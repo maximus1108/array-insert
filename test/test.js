@@ -1,6 +1,6 @@
 import '../src/index.js';
 
-describe("Insert and retain ascending order", () => {
+describe("Insert and retain ascending order -", () => {
     
     it("Insert integers", () => {
         const arr = [2, 3, 4, 6];
@@ -18,14 +18,13 @@ describe("Insert and retain ascending order", () => {
         expect(arr).toEqual([1, 2, 3, 4, 5, 6]);
     });
 
-
     it('Insert single character strings', () => {
         const arr = ['a', 'b', 'd', 'f'];
     
         arr.insert('c').insert('e')
         
         expect(arr).toEqual(['a', 'b', 'c', 'd', 'e','f']);
-    })
+    });
 
     it('Insert single character strings at first and last indices', () => {
         const arr = ['a', 'b', 'c', 'd'];
@@ -33,8 +32,7 @@ describe("Insert and retain ascending order", () => {
         arr.insert('a').insert('z')
         
         expect(arr).toEqual(['a', 'a', 'b', 'c', 'd', 'z']);
-    })
-
+    });
 
     it('Insert multiple character strings', () => {
         const arr = ['apple', 'banana', 'curious', 'hello'];
@@ -42,7 +40,7 @@ describe("Insert and retain ascending order", () => {
         arr.insert('ant').insert('bang').insert('cat').insert('hand').insert('hi').insert('max');
 
         expect(arr).toEqual(['ant', 'apple', 'banana', 'bang', 'cat', 'curious', 'hand','hello', 'hi', 'max']);
-    })
+    });
 
     it('Insert using object properties', () => {
         const arr = [{
@@ -101,9 +99,43 @@ describe("Insert and retain ascending order", () => {
         }]);
     });
 
+    it('Insert using nested array indices', () => {
+        const arr = [[
+            0,
+            1
+        ], [
+            2,
+            5
+        ], [
+            3,
+            4
+        ]];
+
+        const sortByFirstIndex = (currentValue, insertValue) => currentValue[0] < insertValue[0]
+    
+        arr.insert([1, 3], sortByFirstIndex).insert([4, 6], sortByFirstIndex);
+        
+        expect(arr).toEqual([[
+            0,
+            1
+        ], [
+            1,
+            3
+        ],[
+            2,
+            5
+        ], [
+            3,
+            4
+        ],[
+            4,
+            6
+        ]]);
+    })
+
   });
 
-describe("Insert and retain descending order", () => {
+describe("Insert and retain descending order -", () => {
 
     const descendingSort = (currentValue, insertValue) => currentValue > insertValue;
    
@@ -222,5 +254,38 @@ describe("Insert and retain descending order", () => {
             price: 99000
         }]);
     });
+
+    it('Insert using nested array indices', () => {
+        const arr = [[
+            0,
+            100
+        ], [
+            2,
+            55
+        ], [
+            3,
+            21
+        ]];
+
+        const sortByFirstIndex = (currentValue, insertValue) => currentValue[1] > insertValue[1]
+    
+        arr.insert([1, 201], sortByFirstIndex).insert([4, 34], sortByFirstIndex);
+        
+        expect(arr).toEqual([[
+            1,
+            201
+        ], [
+            0,
+            100
+        ],[
+            2,
+            55
+        ], [
+            4,
+            34
+        ],[
+            3,
+            21
+        ]]);
+    })
   });
-      
