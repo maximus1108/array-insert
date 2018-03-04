@@ -99,20 +99,128 @@ describe("Insert and retain ascending order", () => {
             make: 'ferrari',
             price: 100000
         }]);
-    })
+    });
 
   });
 
-describe("Insert and retain descending order", function() {
-    const arr = [6, 4, 3, 2];
-  
-    it("Basic integer insert", function() {
-      arr.insert(1, (currentValue, insertValue) => currentValue > insertValue)
-         .insert(5, (currentValue, insertValue) => currentValue > insertValue);
+describe("Insert and retain descending order", () => {
+
+    const descendingSort = (currentValue, insertValue) => currentValue > insertValue;
+   
+    it("Insert integer", () => {
+      const arr = [6, 4, 3, 2];
+      arr.insert(1, descendingSort)
+         .insert(5, descendingSort);
 
       expect(arr).toEqual([6, 5, 4, 3, 2, 1]);
     });
-  });
 
-  describe
+    it("Insert integers at first and last indices", () => {
+        const arr = [5, 4, 3, 2];
+
+        arr.insert(1, descendingSort)
+           .insert(6, descendingSort);
+
+        expect(arr).toEqual([6, 5, 4, 3, 2, 1]);
+    });
+
+
+    it('Insert single character strings', () => {
+        const arr = ['f', 'd', 'b', 'a'];
+    
+        arr.insert('c', descendingSort)
+           .insert('e', descendingSort)
+        
+        expect(arr).toEqual(['f', 'e', 'd', 'c', 'b','a']);
+    })
+
+    it('Insert single character strings at first and last indices', () => {
+        const arr = ['d', 'c', 'b', 'a'];
+    
+        arr.insert('a', descendingSort).insert('z', descendingSort)
+        
+        expect(arr).toEqual(['z', 'd', 'c', 'b', 'a', 'a']);
+    })
+
+
+    it('Insert multiple character strings', () => {
+        const arr = ["hello", "curious", "banana", "apple"];
+    
+        arr.insert('ant', descendingSort)
+           .insert('bang', descendingSort)
+           .insert('cat', descendingSort)
+           .insert('hand', descendingSort)
+           .insert('hi', descendingSort)
+           .insert('max', descendingSort);
+
+        expect(arr).toEqual(["max", "hi", "hello", "hand", "curious", "cat", "bang", "banana", "apple", "ant"]);
+    })
+
+    it('Insert using object properties', () => {
+
+        const arr = [{
+            make: 'vauxhall',
+            price: 100000
+        }, {
+            make: 'ford',
+            price: 100000
+        }, {
+            make: 'ferrari',
+            price: 50000
+        },{
+            make: 'chrysler',
+            price: 30000
+        },{
+            make: 'bmw',
+            price: 25000
+        },{
+            make: 'bentley',
+            price: 5000
+        }];
+
+        const sortByMakeDecending = (currentValue, insertValue) => currentValue.make > insertValue.make;
+    
+        arr.insert({
+            make: 'seat',
+            price: 4000
+        }, sortByMakeDecending)
+        .insert({
+            make: 'lamborgini',
+            price: 99000
+        }, sortByMakeDecending)
+        .insert({
+            make: 'audi',
+            price: 99000
+        }, sortByMakeDecending);
+
+        expect(arr).toEqual([{
+            make: 'vauxhall',
+            price: 100000
+        }, {
+            make: 'seat',
+            price: 4000
+        }, {
+            make: 'lamborgini',
+            price: 99000
+        }, {
+            make: 'ford',
+            price: 100000
+        }, {
+            make: 'ferrari',
+            price: 50000
+        }, {
+            make: 'chrysler',
+            price: 30000
+        }, {
+            make: 'bmw',
+            price: 25000
+        }, {
+            make: 'bentley',
+            price: 5000
+        }, {
+            make: 'audi',
+            price: 99000
+        }]);
+    });
+  });
       
