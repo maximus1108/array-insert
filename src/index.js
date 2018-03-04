@@ -33,7 +33,7 @@ Array.prototype.insert = function (
         arr.unshift(item);
         return arr;
     }
-
+    
     while(minIndex <= maxIndex) {
         currentIndex = Math.floor((minIndex + maxIndex) / 2);
 
@@ -48,7 +48,7 @@ Array.prototype.insert = function (
             adjacentValue = arr[adjacentIndex];
 
             if(evaluator(adjacentValue, item))
-                return insertItem(adjacentIndex);
+                return insertItem(currentIndex);
             else
               maxIndex = adjacentIndex;
 
