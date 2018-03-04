@@ -70,6 +70,14 @@ describe("Insert and retain ascending order -", () => {
         .insert({
             make: 'lamborgini',
             price: 99000
+        },  (currentValue, insertValue) => currentValue.price < insertValue.price)
+        .insert({
+            make: 'vauxhall',
+            price: 10000
+        },  (currentValue, insertValue) => currentValue.price < insertValue.price)
+        .insert({
+            make: 'mercedes',
+            price: 30000
         },  (currentValue, insertValue) => currentValue.price < insertValue.price);
 
         expect(arr).toEqual([{
@@ -82,8 +90,14 @@ describe("Insert and retain ascending order -", () => {
             make: 'vauxhall',
             price: 10000
         }, {
+            make: 'vauxhall',
+            price: 10000
+        }, {
             make: 'bmw',
             price: 25000
+        },{
+            make: 'mercedes',
+            price: 30000
         },{
             make: 'mercedes',
             price: 30000
@@ -97,6 +111,7 @@ describe("Insert and retain ascending order -", () => {
             make: 'ferrari',
             price: 100000
         }]);
+        
     });
 
     it('Insert using nested array indices', () => {
