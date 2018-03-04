@@ -1,7 +1,14 @@
-Array.prototype.insert = function (item, evaluator) {
+Array.prototype.insert = function (
+    item,
+    evaluator = (currentValue, insertValue) => currentValue < insertValue
+) {
 
-    if(item === undefined || item === null)
-        throw new Error (`You cannot insert a value of '${item}'`)
+   if(item === undefined || item === null)
+        throw new Error (`You cannot insert a value of '${item}'`);
+    
+    if(typeof evaluator !== undefined && typeof evaluator !== 'function') {
+        throw new TypeError (`'${evaluator}' is not a function. Ensure the evaluating callback is a function or undefined`);
+    }
 
     const arr = this;
 
@@ -17,12 +24,12 @@ Array.prototype.insert = function (item, evaluator) {
         adjacentIndex,
         adjacentValue;
 
-    if(item >= arr[maxIndex]) {
+    if(evaluator(arr[maxIndex], item)) {
         arr.push(item);
         return arr;
     }
 
-    if(item <= arr[0]){
+    if(evaluator(item, arr[minIndex])){
         arr.unshift(item);
         return arr;
     }
@@ -35,23 +42,23 @@ Array.prototype.insert = function (item, evaluator) {
         if(item === currentValue)
             return insertItem(currentIndex);
 
-        else if (item < currentValue) {
+        else if (evaluator(item, currentValue)) {
 
             adjacentIndex = currentIndex - 1
             adjacentValue = arr[adjacentIndex];
 
-            if(item >= adjacentValue)
+            if(evaluator(adjacentValue, item))
                 return insertItem(adjacentIndex);
             else
               maxIndex = adjacentIndex;
 
         }
-        else if (item > currentValue) {
+        else {
             
             adjacentIndex = currentIndex + 1;
             adjacentValue = arr[adjacentIndex];
 
-            if(item <= adjacentValue)
+            if(evaluator(item, adjacentValue))
                 return insertItem(adjacentIndex);
             else           
                 minIndex = adjacentIndex;
@@ -59,5 +66,7 @@ Array.prototype.insert = function (item, evaluator) {
         }
     }
 
-    return -1;
+    throw new Error(`unable to insert value '${item}' into '${arr}'. 
+                    Ensure the array is sorted using the same method specified in callback passed, if applicable`
+                );
 }
