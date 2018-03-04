@@ -31,7 +31,8 @@ if(!Array.prototype.insert) {
         }
 
         let minIndex = 0, // first index in array
-            maxIndex = arr.length - 1, // last index in the array
+            len = arr.length, // length of the array
+            maxIndex = len - 1, // last index in the array
             currentIndex, // curent index being evaluated
             currentValue, // value of the current index
             adjacentIndex, // index adjacent to the currentIndex
@@ -39,8 +40,8 @@ if(!Array.prototype.insert) {
             evaluation, // boolean result of evaluator;
             evaluationInverted;  // boolean result of the evaulator when values ran the other way around
 
-        // if item should be after the last index
-        if(evaluator(arr[maxIndex], item)) {
+        // if array is empty or the item should be after the last index
+        if(len === 0 || evaluator(arr[maxIndex], item)) {
             // add it to the end
             arr.push(item);
             // job done - return this array

@@ -1,6 +1,15 @@
 import '../src/index.js';
 
 describe("Insert and retain ascending order -", () => {
+
+    it("Insert into empty array", () => {
+        const arr = [];
+
+        arr.insert(1).insert(2).insert(5);
+
+        expect(arr).toEqual([1, 2, 5]);
+    });
+
     
     it("Insert integers", () => {
         const arr = [2, 3, 4, 6];
