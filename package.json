@@ -1,5 +1,5 @@
 {
-  "name": "array-insert",
+  "name": "array.prototype.insert",
   "version": "1.0.0",
   "description": "This module adds an 'insert' method to the Array object's prototype, which can be used to insert an element into an array at an index calculated by a sorting criteria.",
   "main": "./dist/index.js",
