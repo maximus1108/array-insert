@@ -14,7 +14,7 @@ The method will mutate the original array.
 
      `npm install --save array.prototype.insert`
 
-2. Import the package at the top of entry file of your app or the you want to use it in.
+2. Import the package at the top of entry file of your app or the file you want to use it in.
 
     ```require('array.prototype.insert');```
 
