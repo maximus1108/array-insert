@@ -1,7 +1,7 @@
 {
   "name": "array-insert",
   "version": "1.0.0",
-  "description": "A module to which adds a method to Array's prototype, which allows us to insert an element at a position based on a sorting criteria",
+  "description": "This module adds an 'insert' method to the Array object's prototype, which can be used to insert an element into an array at an index calculated by a sorting criteria.",
   "main": "./dist/index.js",
   "directories": {
     "test": "test"
@@ -29,7 +29,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/maximus1108/array-insert/issues"
   },
