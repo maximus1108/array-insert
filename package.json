@@ -21,7 +21,8 @@
   },
   "scripts": {
     "test": "node ./node_modules/karma/bin/karma start ./config/karma.config.js",
-    "build": "node ./node_modules/webpack-cli/bin/webpack.js --config ./config/webpack.config.js"
+    "build": "node ./node_modules/webpack-cli/bin/webpack.js --config ./config/webpack.config.js",
+    "prepublish": "node ./node_modules/webpack-cli/bin/webpack.js --config ./config/webpack.config.js"
   },
   "repository": {
     "type": "git",
