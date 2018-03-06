@@ -24,7 +24,7 @@ The method will mutate the original array.
 It is assumed that the array being worked on is empty, or sorted by some criteria and the callback used for comparison is in keeping with this (otherwise unexpected results may occur).
 
 ### Syntax
-```arr.item(itemToInsert, compareFunction[currentValue, insertValue])```
+```arr.insert(itemToInsert, compareFunction[currentValue, insertValue])```
 
 - `arr` - a sorted or empty array
 - parameters:
