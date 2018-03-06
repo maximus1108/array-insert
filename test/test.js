@@ -123,6 +123,42 @@ describe("Insert and retain ascending order -", () => {
         
     });
 
+    it('Insert using object properties into empty array', () => {
+        const arr = [];
+    
+        arr.insert({
+            make: 'seat',
+            price: 4000
+        }, (currentValue, insertValue) => currentValue.price < insertValue.price)
+        .insert({
+            make: 'lamborgini',
+            price: 99000
+        },  (currentValue, insertValue) => currentValue.price < insertValue.price)
+        .insert({
+            make: 'vauxhall',
+            price: 10000
+        },  (currentValue, insertValue) => currentValue.price < insertValue.price)
+        .insert({
+            make: 'mercedes',
+            price: 30000
+        },  (currentValue, insertValue) => currentValue.price < insertValue.price);
+
+        expect(arr).toEqual([{
+            make: 'seat',
+            price: 4000
+        },{
+            make: 'vauxhall',
+            price: 10000
+        }, {
+            make: 'mercedes',
+            price: 30000
+        },{
+            make: 'lamborgini',
+            price: 99000
+        }]);
+        
+    });
+
     it('Insert using nested array indices', () => {
         const arr = [[
             0,
